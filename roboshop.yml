@@ -1,0 +1,5 @@
+- name: running roboshop_ansible
+  hosts: all
+  become: yes
+  roles:
+    - "{{role_name}}"
