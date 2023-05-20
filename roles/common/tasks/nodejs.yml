@@ -18,3 +18,7 @@
 - name: copy file of schema_fun
   ansible.builtin.import_tasks:
     file: schema_fun.yml
+
+- name: copy file of systemd
+  ansible.builtin.import_tasks:
+    file: systemd_setup.yml
