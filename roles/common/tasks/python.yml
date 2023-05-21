@@ -1,0 +1,44 @@
+fun_python () {
+
+    print_msg "installing the python package"
+    yum install python36 gcc python3-devel -y &>>$log_file
+    stat_check_fuction $?
+
+    funct_prereq
+
+    print_msg "installing the pip3.6 "
+    pip3.6 install -r requirements.txt &>>$log_file
+    stat_check_fuction $?
+
+    print_msg "changing the rabbit_password"
+    sed -i -e "s|rabbit_user_passwd|$rabbit_user_passwd|" ${script_path}/payment.service &>>$log_file
+    stat_check_fuction $?
+
+    func_systemd_setup
+
+}
+
+- name: installing the python package
+  ansible.builtin.yum:
+    name:
+      - python36
+      - gcc
+      - python-devel
+    state: installed
+
+- name: copy the file 
+  ansible.builtin.import_tasks:
+    file: app_prereq.yml
+
+- name: installing the pip3.6
+  ansible.builtin.yum:
+    name: pip3.6 install -r requirements.txt
+  args:
+    chdir: /app
+
+- name: checking the password
+  ansible.builtin.shell: sed -i -e "s|rabbit_user_passwd|$rabbit_user_passwd|" ${script_path}/payment.service
+
+- name: copy file of systemd
+  ansible.builtin.import_tasks:
+    file: systemd_setup.yml
