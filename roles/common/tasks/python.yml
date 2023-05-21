@@ -16,9 +16,6 @@
   args:
     chdir: /app
 
-- name: checking the password
-  ansible.builtin.shell: sed -i -e "s|rabbit_user_passwd|$rabbit_user_passwd|" ${script_path}/payment.service
-
 - name: copy file of systemd
   ansible.builtin.import_tasks:
     file: systemd_setup.yml
