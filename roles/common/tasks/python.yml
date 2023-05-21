@@ -12,8 +12,7 @@
     file: app_prereq.yml
 
 - name: installing the pip3.6
-  ansible.builtin.shell:
-    name: pip3.6 install -r requirements.txt
+  ansible.builtin.shell: pip3.6 install -r requirements.txt
   args:
     chdir: /app
 
