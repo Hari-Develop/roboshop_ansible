@@ -1,0 +1,5 @@
+- name: importing main role
+  ansible.buitin.import_role:
+    name: common
+    tasks_from: java.yml
+    
