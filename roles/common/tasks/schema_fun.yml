@@ -23,5 +23,5 @@
         state: installed
     
     - name: loading the scheme
-      ansible.builtin.shell: mysql -h {{ lookup('aws_ssm', 'dev.mysql.scheme_repo_url', region='us-east-1' ) }} -uroot -pRoboShop@1 < /app/schema/{{component}}.sql 
+      ansible.builtin.shell: mysql -h {{ lookup('aws_ssm', 'dev.mysql.url_shipping', region='us-east-1' ) }} -uroot -pRoboShop@1 < /app/schema/{{component}}.sql 
       
