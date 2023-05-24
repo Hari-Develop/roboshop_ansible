@@ -23,4 +23,4 @@
         state: installed
     
     - name: loading the scheme
-      ansible.builtin.shell: mysql -h {{ lookup('aws_ssm', 'dev.mysql_url_schema', region='us-east-1' ) }} -uroot -p{{ lookup('aws_ssm', 'mysql_root_passwd', region='us-east-1' ) }} < /app/schema/shipping.sql
+      ansible.builtin.shell: mysql -h {{ lookup('aws_ssm', 'dev.mysql.url_schema', region='us-east-1' ) }} -uroot -p{{ lookup('aws_ssm', 'dev.mysql.root_passwd', region='us-east-1' ) }} < /app/schema/shipping.sql

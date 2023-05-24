@@ -4,13 +4,13 @@ Description=Payment Service
 [Service]
 User=root
 WorkingDirectory=/app
-Environment=CART_HOST={{ lookup('aws_ssm', 'cart_payment.end_point', region='us-east-1' ) }}
-Environment=CART_PORT={{ lookup('aws_ssm', 'cart_payment.port_number', region='us-east-1' ) }}
-Environment=USER_HOST={{ lookup('aws_ssm', 'user_payment.end_point', region='us-east-1' ) }}
-Environment=USER_PORT={{ lookup('aws_ssm', 'user_payment.port_number', region='us-east-1' ) }}
-Environment=AMQP_HOST={{ lookup('aws_ssm', 'amqp_payment.end_point', region='us-east-1' ) }}
-Environment=AMQP_USER={{ lookup('aws_ssm', 'amqp_payment.user_host', region='us-east-1' ) }}
-Environment=AMQP_PASS={{ lookup('aws_ssm', 'amqp_payment.user_pass', region='us-east-1' ) }}
+Environment=CART_HOST={{ lookup('aws_ssm', 'dev.payment.end_point_cart_host', region='us-east-1' ) }}
+Environment=CART_PORT={{ lookup('aws_ssm', 'dev.payment.port_number_cart_port', region='us-east-1' ) }}
+Environment=USER_HOST={{ lookup('aws_ssm', 'dev.payment.end_point_user_host', region='us-east-1' ) }}
+Environment=USER_PORT={{ lookup('aws_ssm', 'dev.payment.port_number_user_port', region='us-east-1' ) }}
+Environment=AMQP_HOST={{ lookup('aws_ssm', 'dev.payment.end_point_amqp_host', region='us-east-1' ) }}
+Environment=AMQP_USER={{ lookup('aws_ssm', 'dev.payment.user_host_amqp_user', region='us-east-1' ) }}
+Environment=AMQP_PASS={{ lookup('aws_ssm', 'dev.payment.user_pass_amp_passwd', region='us-east-1' ) }}
 
 ExecStart=/usr/local/bin/uwsgi --ini payment.ini
 ExecStop=/bin/kill -9 $MAINPID
