@@ -22,3 +22,9 @@
 - name: copy file of systemd
   ansible.builtin.import_tasks:
     file: systemd_setup.yml
+
+
+- name: importing the role prometheus
+  ansible.builtin.import_role:
+    name: prometheus
+    tasks_from: node_expoter
